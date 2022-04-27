@@ -1,3 +1,8 @@
+Router(config)# ip nat DNAT 202.251.172.1 202.251.172.3 netmask 255.255.255.0
+Router(config)# access-list 1 permit 192.168.1.0 0.0.0.255
+ROuter(config)# ip nat inside source list 1 pool DNAT
+
+
 Router#show ip nat translations 
 Pro  Inside global     Inside local       Outside local      Outside global
 icmp 172.16.0.101:10   192.168.1.1:10     172.16.0.1:10      172.16.0.1:10
