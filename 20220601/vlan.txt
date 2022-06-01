@@ -106,3 +106,129 @@ Primary Secondary Type              Ports
 Switch#
 
 //vlan2
+//Switch0
+Switch(config)#vlan 100
+Switch(config-vlan)#exit
+Switch(config)#vlan 200
+Switch(config-vlan)#exit
+Switch(config)#int fa0/1
+Switch(config-if)#switchport mode access
+Switch(config-if)#switchport access vlan 100
+Switch(config-if)#exit
+Switch(config)#int fa0/2
+Switch(config-if)#switchport mode access
+Switch(config-if)#swithport access vlan 200
+                      ^
+% Invalid input detected at '^' marker.
+	
+Switch(config-if)#switchport access vlan 200
+Switch(config-if)#exit
+Switch(config)#int fa0/3
+Switch(config-if)#switchport mode access
+Switch(config-if)#switchport access vlan 100
+Switch(config-if)#exit
+Switch(config)#int fa0/4
+Switch(config-if)#switchport mode access
+Switch(config-if)#switchport access vlan 200
+Switch(config-if)#exit
+Switch(config)#
+
+//Switch1
+Switch(config)#vlan 100
+Switch(config-vlan)#exit
+Switch(config)#vlan 200
+Switch(config-vlan)#exit
+Switch(config)#int range fa0/1, fa0/3
+Switch(config-if-range)#switchport mode access
+Switch(config-if-range)#switchport access vlan 100
+Switch(config-if-range)#exit
+Switch(config)#int range fa0/2, fa0/4
+Switch(config-if-range)#switchport mode access
+Switch(config-if-range)#switchport access vlan 200
+Switch(config-if-range)#exit
+
+//PC0
+C:\>ping 192.168.0.20
+
+Pinging 192.168.0.20 with 32 bytes of data:
+
+Request timed out.
+Request timed out.
+Request timed out.
+Request timed out.
+
+Ping statistics for 192.168.0.20:
+    Packets: Sent = 4, Received = 0, Lost = 4 (100% loss),
+
+C:\>ping 192.168.0.30
+
+Pinging 192.168.0.30 with 32 bytes of data:
+
+Reply from 192.168.0.30: bytes=32 time<1ms TTL=128
+Reply from 192.168.0.30: bytes=32 time=5ms TTL=128
+Reply from 192.168.0.30: bytes=32 time=1ms TTL=128
+Reply from 192.168.0.30: bytes=32 time<1ms TTL=128
+
+Ping statistics for 192.168.0.30:
+    Packets: Sent = 4, Received = 4, Lost = 0 (0% loss),
+Approximate round trip times in milli-seconds:
+    Minimum = 0ms, Maximum = 5ms, Average = 1ms
+
+C:\>ping 192.168.0.40
+
+Pinging 192.168.0.40 with 32 bytes of data:
+
+Request timed out.
+Request timed out.
+Request timed out.
+Request timed out.
+
+Ping statistics for 192.168.0.40:
+    Packets: Sent = 4, Received = 0, Lost = 4 (100% loss),
+
+C:\>
+
+//PC1
+C:\>ping 192.168.0.10
+
+Pinging 192.168.0.10 with 32 bytes of data:
+
+Request timed out.
+Request timed out.
+Request timed out.
+Request timed out.
+
+Ping statistics for 192.168.0.10:
+    Packets: Sent = 4, Received = 0, Lost = 4 (100% loss),
+
+C:\>ping 192.168.0.30
+
+Pinging 192.168.0.30 with 32 bytes of data:
+
+Request timed out.
+Request timed out.
+Request timed out.
+Request timed out.
+
+Ping statistics for 192.168.0.30:
+    Packets: Sent = 4, Received = 0, Lost = 4 (100% loss),
+
+C:\>ping 192.168.0.40
+
+Pinging 192.168.0.40 with 32 bytes of data:
+
+Reply from 192.168.0.40: bytes=32 time<1ms TTL=128
+Reply from 192.168.0.40: bytes=32 time<1ms TTL=128
+Reply from 192.168.0.40: bytes=32 time<1ms TTL=128
+Reply from 192.168.0.40: bytes=32 time=5ms TTL=128
+
+Ping statistics for 192.168.0.40:
+    Packets: Sent = 4, Received = 4, Lost = 0 (0% loss),
+Approximate round trip times in milli-seconds:
+    Minimum = 0ms, Maximum = 5ms, Average = 1ms
+
+C:\>
+
+//vlan3
+
+//vlan4
